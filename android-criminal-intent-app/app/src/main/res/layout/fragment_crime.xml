@@ -30,6 +30,8 @@
         android:layout_height="wrap_content"
         android:text="@string/crime_solved_label"
         />
+<!--        android:padding="80dp"-->
+
     <CheckBox
         android:id="@+id/crime_solved"
         android:layout_width="match_parent"
