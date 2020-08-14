@@ -77,7 +77,8 @@ public class CrimeListFragment extends Fragment {
 //                    .makeText(getActivity(),mCrime.getTitle() + "click!", Toast.LENGTH_SHORT)
 //                    .show();
             positionToNotify = getAdapterPosition();
-            Intent intent = CrimeActivity.newIntent(getActivity(),mCrime.getId());
+//            Intent intent = CrimeActivity.newIntent(getActivity(),mCrime.getId());
+            Intent intent = CrimePagerActivity.newIntent(getActivity(),mCrime.getId());
             startActivityForResult(intent,REQUEST_CRIME);
         }
 
@@ -109,7 +110,8 @@ public class CrimeListFragment extends Fragment {
 //                    .makeText(getActivity(),mCrime.getTitle() + "click!", Toast.LENGTH_SHORT)
 //                    .show();
             positionToNotify = getAdapterPosition();
-            Intent intent = CrimeActivity.newIntent(getActivity(),mCrime.getId());
+//            Intent intent = CrimeActivity.newIntent(getActivity(),mCrime.getId());
+            Intent intent = CrimePagerActivity.newIntent(getActivity(),mCrime.getId());
             startActivityForResult(intent,REQUEST_CRIME);
         }
     }
