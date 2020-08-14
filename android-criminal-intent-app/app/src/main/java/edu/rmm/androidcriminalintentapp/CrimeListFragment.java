@@ -18,11 +18,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.w3c.dom.Text;
 
 import java.util.List;
+import java.util.UUID;
 
 public class CrimeListFragment extends Fragment {
     private RecyclerView mCrimeRecyclerView;
     private CrimeAdapter mAdapter;
     private static final int REQUEST_CRIME = 1;
+    private int positionToNotify;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -74,6 +76,7 @@ public class CrimeListFragment extends Fragment {
 //            Toast
 //                    .makeText(getActivity(),mCrime.getTitle() + "click!", Toast.LENGTH_SHORT)
 //                    .show();
+            positionToNotify = getAdapterPosition();
             Intent intent = CrimeActivity.newIntent(getActivity(),mCrime.getId());
             startActivityForResult(intent,REQUEST_CRIME);
         }
@@ -85,7 +88,6 @@ public class CrimeListFragment extends Fragment {
         private TextView mPoliceRequired;
         private ImageView mSolvedImageView;
         private Crime mCrime;
-
         public CrimePoliceRequiredHolder(LayoutInflater inflater, ViewGroup parent){
             super(inflater.inflate(R.layout.list_item_crime_police_required,parent,false));
             itemView.setOnClickListener(this);
@@ -106,6 +108,7 @@ public class CrimeListFragment extends Fragment {
 //            Toast
 //                    .makeText(getActivity(),mCrime.getTitle() + "click!", Toast.LENGTH_SHORT)
 //                    .show();
+            positionToNotify = getAdapterPosition();
             Intent intent = CrimeActivity.newIntent(getActivity(),mCrime.getId());
             startActivityForResult(intent,REQUEST_CRIME);
         }
@@ -161,11 +164,14 @@ public class CrimeListFragment extends Fragment {
     private void updateUI(){
         CrimeLab crimeLab = CrimeLab.get(getActivity());
         List<Crime> crimes = crimeLab.getCrimes();
+
         if(mAdapter==null){
             mAdapter = new CrimeAdapter(crimes);
             mCrimeRecyclerView.setAdapter(mAdapter);
         }else {
-            mAdapter.notifyDataSetChanged();
+//            mAdapter.notifyDataSetChanged();
+            mAdapter.notifyItemChanged(positionToNotify);
+
         }
 
 //        where?

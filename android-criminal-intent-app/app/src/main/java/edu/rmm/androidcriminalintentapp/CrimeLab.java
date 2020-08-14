@@ -3,6 +3,7 @@ package edu.rmm.androidcriminalintentapp;
 import android.content.Context;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,12 +29,17 @@ public class CrimeLab {
     public List<Crime> getCrimes(){
         return mCrimes;
     }
-    public Crime getCrime(UUID uuid){
-        for(Crime crime : mCrimes){
-            if(crime.getId().equals(uuid)){
-                return crime;
-            }
-        }
-        return null;
+    public Crime getCrime(final UUID uuid){
+        return getCrimes().stream()
+                .filter(c -> uuid.equals(c.getId()))
+                .findAny()
+                .orElse(null);
+//        for(Crime crime : mCrimes){
+//            if(crime.getId().equals(uuid)){
+//                return crime;
+//            }
+//        }
+//
+//        return null;
     }
 }
