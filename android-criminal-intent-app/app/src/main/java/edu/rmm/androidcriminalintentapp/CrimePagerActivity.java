@@ -10,6 +10,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
@@ -19,6 +20,8 @@ import java.util.UUID;
 public class CrimePagerActivity extends AppCompatActivity {
     private static final String EXTRA_CRIME_ID = "edu.rmm.androidcriminalintentapp.crime_id";
     private ViewPager mViewPager;
+    private Button mButtonFirst;
+    private Button mButtonLast;
     private List<Crime> mCrimes;
 
     public static Intent newIntent(Context packageContext, UUID crimeId){
@@ -39,11 +42,42 @@ public class CrimePagerActivity extends AppCompatActivity {
 
         mCrimes = CrimeLab.get(this).getCrimes();
 
+        mButtonFirst = (Button)findViewById(R.id.buttonFirst);
+        mButtonLast = (Button)findViewById(R.id.buttonLast);
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         mViewPager.setAdapter(new FragmentStatePagerAdapter(fragmentManager) {
             @Override
             public Fragment getItem(int position) {
                 Crime crime = mCrimes.get(position);
+                int viewPagerPosition = position;
+
+
+                if(position == 0){
+                    mButtonFirst.setEnabled(false);
+                }else {
+                    mButtonFirst.setEnabled(true);
+                }
+
+                if (position == getCount()){
+                    mButtonLast.setEnabled(false);
+                }else {
+                    mButtonLast.setEnabled(true);
+                }
+
+
+                mButtonFirst.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                });
+
+                mButtonLast.setOnClickListener(view -> {
+
+                });
+
+
                 return CrimeFragment.newInstance(crime.getId());
             }
 
@@ -59,6 +93,7 @@ public class CrimePagerActivity extends AppCompatActivity {
                 break;
             }
         }
+
 
     }
 }
