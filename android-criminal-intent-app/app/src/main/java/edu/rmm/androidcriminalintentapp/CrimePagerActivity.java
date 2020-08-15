@@ -10,6 +10,8 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 import java.util.List;
 import java.util.UUID;
