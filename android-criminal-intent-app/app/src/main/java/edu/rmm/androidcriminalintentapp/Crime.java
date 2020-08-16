@@ -1,23 +1,30 @@
 package edu.rmm.androidcriminalintentapp;
+import android.util.Log;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.Locale;
 import java.util.UUID;
 
 public class Crime {
     private UUID mId;
     private String mTitle;
-    private String mDate;
+    private Date mDate;
     private boolean mSolved;
     private boolean mRequiresPolice;
 
     public Crime() {
         mId = UUID.randomUUID();
-        String pattern = "EEEE, dd MMMM yyyy";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        Date date = new Date();
-        mDate = simpleDateFormat.format(date);
+        mDate = new Date();
     }
 
+    public String convertDate(Date date){
+        String pattern = "EEEE, dd MMMM yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, Locale.ENGLISH);
+        return simpleDateFormat.format(date);
+    }
     public UUID getId() {
         return mId;
     }
@@ -30,11 +37,11 @@ public class Crime {
         mTitle = title;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return mDate;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         mDate = date;
     }
 
