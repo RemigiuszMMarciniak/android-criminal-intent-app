@@ -9,4 +9,13 @@
     <string name="show_subtitle">Show subtitle</string>
     <string name="hide_subtitle">Hide subtitle</string>
     <string name="subtitle_format">%1$d crimes</string>
+    <string name="crime_suspect_text">Choose a suspect</string>
+    <string name="crime_report_text">Send a crime report</string>
+    <string name="crime_report">%1$s! The crime had been revealed on %2$s. %3$s and %4$s </string>
+    <string name="crime_report_solved">Case solved</string>
+    <string name="crime_report_unsolved">Case unsolved</string>
+    <string name="crime_report_no_suspect">no suspect</string>
+    <string name="crime_report_suspect">Suspect is %s.</string>
+    <string name="crime_report_subject">CriminalIntent - crime report</string>
+    <string name="send_report">Send a report via</string>
 </resources>
