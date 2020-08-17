@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.rmm.androidcriminalintentapp">
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false"
+    />
 
     <application
         android:allowBackup="true"
@@ -13,7 +17,18 @@
             android:name=".CrimePagerActivity"
             android:parentActivityName=".CrimeListActivity">
         </activity>
-<!--        <activity android:name=".CrimeActivity">-->
+
+        <provider
+            android:authorities="edu.rmm.androidcriminalintentapp.fileprovider"
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/files"/>
+        </provider>
+
+        <!--        <activity android:name=".CrimeActivity">-->
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -27,6 +42,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -75,6 +76,10 @@ public class CrimeLab {
     public void addCrime(Crime c){
         ContentValues contentValues = getContentValues(c);
         mDatabase.insert(CrimeTable.NAME,null,contentValues);
+    }
+    public File getPhotoFile(Crime crime){
+        File filesDir = mContext.getFilesDir();
+        return new File(filesDir,crime.getPhotoFilename());
     }
     public void updateCrime(Crime crime){
         String uuidString = crime.getId().toString();
