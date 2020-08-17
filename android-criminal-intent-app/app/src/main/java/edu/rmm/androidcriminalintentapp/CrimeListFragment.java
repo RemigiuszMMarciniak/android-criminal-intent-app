@@ -1,5 +1,6 @@
 package edu.rmm.androidcriminalintentapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -27,7 +28,22 @@ public class CrimeListFragment extends Fragment {
     private static final int REQUEST_CRIME = 1;
     private int positionToNotify;
     private boolean mSubtitleVisible;
+    private Callbacks mCallbacks;
 
+    public interface Callbacks{
+        void onCrimeSelected(Crime crime);
+    }
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mCallbacks = null;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mCallbacks = (Callbacks)context;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,8 +70,8 @@ public class CrimeListFragment extends Fragment {
             case R.id.new_crime:
                 Crime crime = new Crime();
                 CrimeLab.get(getActivity()).addCrime(crime);
-                Intent intent = CrimePagerActivity.newIntent(getActivity(),crime.getId());
-                startActivity(intent);
+                updateUI();
+                mCallbacks.onCrimeSelected(crime);
                 return true;
             case R.id.show_subtitle:
                 mSubtitleVisible = !mSubtitleVisible;
@@ -135,8 +151,7 @@ public class CrimeListFragment extends Fragment {
         @Override
         public void onClick(View view) {
             positionToNotify = getAdapterPosition();
-            Intent intent = CrimePagerActivity.newIntent(getActivity(),mCrime.getId());
-            startActivityForResult(intent,REQUEST_CRIME);
+            mCallbacks.onCrimeSelected(mCrime);
         }
 
     }
