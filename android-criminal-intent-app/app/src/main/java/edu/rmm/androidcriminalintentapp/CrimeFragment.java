@@ -126,8 +126,10 @@ public class CrimeFragment extends Fragment {
             }
         });
 
+//        final Intent pickContact = new Intent(Intent.ACTION_PICK,
+//                ContactsContract.Contacts.CONTENT_URI);
         final Intent pickContact = new Intent(Intent.ACTION_PICK,
-                ContactsContract.Contacts.CONTENT_URI);
+                ContactsContract.CommonDataKinds.Phone.CONTENT_URI);
         mSuspectButton = (Button) v.findViewById(R.id.crime_suspect);
         mSuspectButton.setOnClickListener(new View.OnClickListener() {
             @Override
