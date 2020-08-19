@@ -25,7 +25,10 @@ public class Crime {
     }
 
     public String convertDate(Date date){
-        String pattern = "EEEE, dd MMMM yyyy";
+//        String pattern = "EEEE, dd MMMM yyyy";
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, Locale.ENGLISH);
+//        return simpleDateFormat.format(date);
+        String pattern = "dd MM yyyy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, Locale.ENGLISH);
         return simpleDateFormat.format(date);
     }
